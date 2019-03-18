@@ -1,0 +1,97 @@
+service: life-of-beer-api
+
+# Use the serverless-webpack plugin to transpile ES6
+plugins:
+  - serverless-webpack
+  - serverless-offline
+
+# serverless-webpack configuration
+# Enable auto-packing of external modules
+custom:
+  webpack:
+    webpackConfig: ./webpack.config.js
+    includeModules: true
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  stage: prod
+  region: us-east-1
+
+  # 'iamRoleStatements' defines the permission policy for the Lambda function.
+  # In this case Lambda functions are granted with permissions to access DynamoDB.
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - dynamodb:DescribeTable
+        - dynamodb:Query
+        - dynamodb:Scan
+        - dynamodb:GetItem
+        - dynamodb:PutItem
+        - dynamodb:UpdateItem
+        - dynamodb:DeleteItem
+      Resource: "arn:aws:dynamodb:us-east-1:*:*"
+
+functions:
+  # Defines an HTTP API endpoint that calls the main function in beer-create.js
+  # - path: url path is /Beer
+  # - method: POST request
+  # - cors: enabled CORS (Cross-Origin Resource Sharing) for browser cross
+  #     domain api call
+  # - authorizer: authenticate using the AWS IAM role
+  beer-create:
+    handler: beer-create.main
+    events:
+      - http:
+          path: Beer
+          method: post
+          cors: true
+          authorizer: aws_iam
+  # Defines an HTTP API endpoint that calls the main function in beer-get.js
+  # - path: url path is /Beer/{id}
+  # - method: GET request
+  beer-get:
+    handler: beer-get.main
+    events:
+      - http:
+          path: Beer/{id}
+          method: get
+          cors: true
+          authorizer: aws_iam
+  beer-get-all:
+    # Defines an HTTP API endpoint that calls the main function in beer-get-all.js
+    # - path: url path is /Beer
+    # - method: GET request
+    handler: beer-get-all.main
+    events:
+      - http:
+          path: Beer
+          method: get
+          cors: true
+          authorizer: aws_iam
+  beer-update:
+    # Defines an HTTP API endpoint that calls the main function in beer-update.js
+    # - path: url path is /Beer/{id}
+    # - method: PUT request
+    handler: beer-update.main
+    events:
+      - http:
+          path: Beer/{id}
+          method: put
+          cors: true
+          authorizer: aws_iam
+  beer-delete:
+    # Defines an HTTP API endpoint that calls the main function in beer-delete.js
+    # - path: url path is /Beer/{id}
+    # - method: DELETE request
+    handler: beer-delete.main
+    events:
+      - http:
+          path: Beer/{id}
+          method: delete
+          cors: true
+          authorizer: aws_iam
+# Create our resources with separate CloudFormation templates
+resources:
+  # API Gateway Errors
+  - ${file(resources/api-gateway-errors.yml)}

@@ -1,0 +1,8 @@
+{
+    "body": "{\"breweryName\":\"Hello World\",\"breweryLocation\":\"World, World\",\"beerName\":\"Hello Beer\",\"beerStyle\":\"Stout\",\"beerNotes\":\"delicious\",\"approvedIndicator\": true,\"favoriteIndicator\": true}",
+    "requestContext": {
+        "identity": {
+            "cognitoIdentityId": "USER-SUB-1234"
+        }
+    }
+}

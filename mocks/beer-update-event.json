@@ -1,0 +1,11 @@
+{
+    "body": "{\"breweryName\":\"Somewhere\",\"breweryLocation\":\"Somewhere, Somewhere\",\"beerName\":\"Something\",\"beerStyle\":\"Stout\",\"beerNotes\":\"delicious\",\"approvedIndicator\": true,\"favoriteIndicator\": true}",
+    "pathParameters": {
+        "id": "f2b5b0e0-43a1-11e9-b0b3-2b60b4f4d640"
+    },
+    "requestContext": {
+        "identity": {
+            "cognitoIdentityId": "USER-SUB-1234"
+        }
+    }
+}
