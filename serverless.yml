@@ -47,9 +47,6 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
-  # Defines an HTTP API endpoint that calls the main function in beer-get.js
-  # - path: url path is /Beer/{id}
-  # - method: GET request
   beer-get:
     handler: beer-get.main
     events:
@@ -59,9 +56,6 @@ functions:
           cors: true
           authorizer: aws_iam
   beer-get-all:
-    # Defines an HTTP API endpoint that calls the main function in beer-get-all.js
-    # - path: url path is /Beer
-    # - method: GET request
     handler: beer-get-all.main
     events:
       - http:
@@ -69,10 +63,23 @@ functions:
           method: get
           cors: true
           authorizer: aws_iam
+  beer-get-favorites:
+    handler: beer-get-favorites.main
+    events:
+      - http:
+          path: Beer/Favorite
+          method: get
+          cors: true
+          authorizer: aws_iam
+  beer-get-approved:
+    handler: beer-get-approved.main
+    events:
+      - http:
+          path: Beer/Approved
+          method: get
+          cors: true
+          authorizer: aws_iam
   beer-update:
-    # Defines an HTTP API endpoint that calls the main function in beer-update.js
-    # - path: url path is /Beer/{id}
-    # - method: PUT request
     handler: beer-update.main
     events:
       - http:
@@ -81,9 +88,6 @@ functions:
           cors: true
           authorizer: aws_iam
   beer-delete:
-    # Defines an HTTP API endpoint that calls the main function in beer-delete.js
-    # - path: url path is /Beer/{id}
-    # - method: DELETE request
     handler: beer-delete.main
     events:
       - http:
