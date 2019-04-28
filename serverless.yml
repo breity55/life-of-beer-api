@@ -95,6 +95,14 @@ functions:
           method: delete
           cors: true
           authorizer: aws_iam
+  beer-search:
+    handler: beer-search.main
+    events:
+      - http:
+          path: Beer/Search/{query}
+          method: get
+          cors: true
+          authorizer: aws_iam
 # Create our resources with separate CloudFormation templates
 resources:
   # API Gateway Errors
