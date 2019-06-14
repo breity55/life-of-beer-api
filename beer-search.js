@@ -5,10 +5,10 @@ export async function main(event, context) {
     const params = {
         TableName: "Beer",
         KeyConditionExpression: "userId = :userId",
-        FilterExpression: "contains (breweryName , :searchQuery) or contains (beerName, :searchQuery)",
+        FilterExpression: "contains (breweryName , :searchQuery) or contains (beerName, :searchQuery) or contains (breweryLocation, :searchQuery)",
         ExpressionAttributeValues: {
             ":userId": event.requestContext.identity.cognitoIdentityId,
-            ":searchQuery": event.pathParameters.query,
+            ":searchQuery": decodeURI(event.pathParameters.query),
         }
     };
 
