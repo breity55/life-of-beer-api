@@ -27,10 +27,28 @@ export async function main(event, context, callback) {
         }
     };
 
+    const checkIfRecordExistsParams = {
+        TableName: "Beer",
+        KeyConditionExpression: "userId = :userId",
+        FilterExpression: "contains (breweryName , :searchBreweryName) and contains (beerName, :searchBeerName) and contains (breweryLocation, :searchBreweryLocation)",
+        ExpressionAttributeValues: {
+            ":userId": params.Item.userId,
+            ":searchBreweryName": params.Item.breweryName,
+            ":searchBreweryLocation": params.Item.breweryLocation,
+            ":searchBeerName": params.Item.beerName
+        }
+    };
+
+    const result = await dynamoDbLib.call("query", checkIfRecordExistsParams);
+    if (result.Items.length > 0) {
+        throw new Error("Record already exists");
+    }
+
     try {
+
         await dynamoDbLib.call("put", params);
         return success(params.Item);
     } catch (e) {
-        return failure({ status: false });
+        return failure({ status: false, message: e.message });
     }
 }
