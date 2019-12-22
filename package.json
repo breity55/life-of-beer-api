@@ -35,6 +35,7 @@
   "dependencies": {
     "babel-runtime": "^6.26.0",
     "source-map-support": "^0.4.18",
-    "uuid": "^3.3.2"
+    "uuid": "^3.3.2",
+    "serialize-javascript": ">=2.1.1"
   }
 }
