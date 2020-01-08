@@ -1,0 +1,8 @@
+{
+    "body": "[{\"breweryName\":\"Hello World\",\"breweryLocation\":\"World, World\",\"beerName\":\"Hello Beer\",\"beerStyle\":\"Stout\",\"beerNotes\":\"delicious\",\"approvedIndicator\": true,\"favoriteIndicator\": true}, {\"breweryName\":\"Hello World\",\"breweryLocation\":\"World, World\",\"beerName\":\"Hello Beer 2\",\"beerStyle\":\"Stout\",\"beerNotes\":\"not as good as the original\",\"approvedIndicator\": true,\"favoriteIndicator\": false}]",
+    "requestContext": {
+        "identity": {
+            "cognitoIdentityId": "USER-SUB-1234"
+        }
+    }
+}
