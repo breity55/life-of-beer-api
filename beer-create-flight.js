@@ -42,10 +42,9 @@ export async function main(event, context, callback) {
         if (result.Items.length <= 0) {
             try {
                 await dynamoDbLib.call("put", newRecordParams);
-                return success(data);
-            } catch (e) {
-                return failure({ status: false, message: e.message });
-            }
+            } catch (e) { }
         }
     }
+
+    return success(data);
 }
