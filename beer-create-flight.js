@@ -20,8 +20,8 @@ export async function main(event, context, callback) {
                 beerName: data[i].beerName,
                 beerStyle: data[i].beerStyle,
                 beerNotes: data[i].beerNotes,
-                approvedIndicator: data[i].approvedIndicator,
-                favoriteIndicator: data[i].favoriteIndicator,
+                approvedIndicator: (data[i].approvedIndicator === "true" || data[i].approvedIndicator === true) ? true : false,
+                favoriteIndicator: (data[i].favoriteIndicator === "true" || data[i].favoriteIndicator === true) ? true : false,
                 createdDate: Date.now()
             }
         }
