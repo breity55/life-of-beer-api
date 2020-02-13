@@ -47,6 +47,14 @@ functions:
           method: post
           cors: true
           authorizer: aws_iam
+  beer-create-flight:
+    handler: beer-create-flight.main
+    events:
+      - http:
+          path: Beer/Flight
+          method: post
+          cors: true
+          authorizer: aws_iam
   beer-get:
     handler: beer-get.main
     events:
